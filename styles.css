@@ -271,12 +271,17 @@ h2 {
 .hero-video__frame {
   position: relative;
   width: 100%;
+  aspect-ratio: 16 / 9;
   background: #04060d;
 }
 
-.hero-video__frame .vid_embed--classic {
+.hero-video__frame img {
+  position: absolute;
+  inset: 0;
   width: 100%;
-  max-width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .hero__microcopy {
@@ -474,27 +479,165 @@ h2 {
   background: linear-gradient(180deg, transparent, rgba(3, 146, 197, 0.08));
 }
 
-.faq-list {
-  margin-top: 20px;
+.booking-form {
+  margin: 24px auto 0;
+  width: min(860px, 100%);
   display: grid;
-  gap: 12px;
-}
-
-details {
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  padding: 20px;
   border: 1px solid var(--border);
-  background: rgba(13, 20, 36, 0.88);
-  border-radius: 12px;
-  padding: 14px 16px;
+  border-radius: 16px;
+  background: rgba(11, 18, 33, 0.82);
+  backdrop-filter: blur(5px);
 }
 
-summary {
+.booking-field {
+  display: grid;
+  gap: 8px;
+}
+
+.booking-field span {
+  font-size: 0.9rem;
+  color: #d3e0fb;
+  font-weight: 600;
+}
+
+.booking-field input,
+.booking-field textarea {
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 10px;
+  background: rgba(5, 10, 25, 0.95);
+  color: #f1f6ff;
+  padding: 12px 13px;
+  font: inherit;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.booking-field input:focus,
+.booking-field textarea:focus {
+  border-color: rgba(3, 146, 197, 0.8);
+  box-shadow: 0 0 0 3px rgba(3, 146, 197, 0.18);
+}
+
+.booking-field input::placeholder,
+.booking-field textarea::placeholder {
+  color: #8ca0c7;
+}
+
+.booking-field--wide {
+  grid-column: 1 / -1;
+}
+
+.booking-form__submit {
+  grid-column: 1 / -1;
+  justify-self: start;
+}
+
+.booking-form__status {
+  grid-column: 1 / -1;
+  margin: 2px 0 0;
+  font-size: 0.92rem;
+  color: #b9c9e8;
+  min-height: 1.35em;
+}
+
+.booking-form__status.is-success {
+  color: #69df9e;
+}
+
+.booking-form__status.is-error {
+  color: #ff9a9a;
+}
+
+.booking-honey {
+  display: none;
+}
+
+.faq-list {
+  margin-top: 24px;
+  display: grid;
+  gap: 14px;
+}
+
+.faq-item {
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  background: linear-gradient(180deg, rgba(10, 18, 35, 0.92), rgba(10, 17, 32, 0.78));
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.24);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.faq-item:hover {
+  border-color: rgba(3, 146, 197, 0.42);
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.32);
+  transform: translateY(-2px);
+}
+
+.faq-item summary {
   cursor: pointer;
   font-weight: 700;
+  list-style: none;
+  padding: 18px 52px 18px 18px;
+  position: relative;
+  color: #ecf3ff;
+  font-size: 1.02rem;
 }
 
-details p,
-details li {
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-item summary::after {
+  content: "+";
+  position: absolute;
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 1.05rem;
+  color: #c9dbff;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  transition: transform 0.25s ease, background-color 0.25s ease, color 0.25s ease;
+}
+
+.faq-item[open] summary::after {
+  content: "−";
+  color: #bde9ff;
+  background: rgba(3, 146, 197, 0.18);
+  transform: translateY(-50%) rotate(180deg);
+}
+
+.faq-answer {
+  padding: 0 18px 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.faq-answer p,
+.faq-answer li {
   color: var(--muted);
+  line-height: 1.6;
+}
+
+.faq-answer p {
+  margin: 12px 0 8px;
+}
+
+.faq-answer ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.faq-answer li + li {
+  margin-top: 4px;
 }
 
 .footer {
@@ -648,6 +791,16 @@ body.page-ready .hero .reveal {
   .value-grid,
   .testimonial-grid {
     grid-template-columns: 1fr;
+  }
+
+  .booking-form {
+    grid-template-columns: 1fr;
+    padding: 16px;
+  }
+
+  .booking-form__submit {
+    width: 100%;
+    justify-self: stretch;
   }
 
   .hero__proof {

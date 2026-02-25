@@ -51,6 +51,8 @@ const bookSection = document.getElementById("book");
 const intro = document.getElementById("intro");
 const scrollProgress = document.getElementById("scrollProgress");
 const magneticButtons = document.querySelectorAll(".magnetic");
+const bookingForm = document.getElementById("bookingForm");
+const bookingStatus = document.getElementById("bookingStatus");
 
 function renderWorkGrid() {
   if (!workGrid) return;
@@ -158,6 +160,62 @@ function initMagneticButtons() {
   });
 }
 
+function initBookingForm() {
+  if (!bookingForm) return;
+
+  bookingForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const submitButton = bookingForm.querySelector(".booking-form__submit");
+    const endpoint = bookingForm.getAttribute("action") || "";
+
+    if (endpoint.includes("your@email.com")) {
+      if (bookingStatus) {
+        bookingStatus.textContent =
+          "Set your real email in index.html form action before receiving submissions.";
+        bookingStatus.classList.add("is-error");
+        bookingStatus.classList.remove("is-success");
+      }
+      return;
+    }
+
+    if (submitButton) {
+      submitButton.disabled = true;
+      submitButton.textContent = "Sending...";
+    }
+
+    if (bookingStatus) {
+      bookingStatus.textContent = "";
+      bookingStatus.classList.remove("is-success", "is-error");
+    }
+
+    try {
+      const formData = new FormData(bookingForm);
+      const response = await fetch(endpoint, {
+        method: "POST",
+        body: formData,
+        headers: { Accept: "application/json" },
+      });
+
+      if (!response.ok) throw new Error("Request failed");
+
+      bookingForm.reset();
+      if (bookingStatus) {
+        bookingStatus.textContent = "Thanks - your request was sent successfully.";
+        bookingStatus.classList.add("is-success");
+      }
+      if (submitButton) submitButton.textContent = "Request Sent";
+    } catch (error) {
+      if (bookingStatus) {
+        bookingStatus.textContent = "Could not send right now. Please try again in a moment.";
+        bookingStatus.classList.add("is-error");
+      }
+      if (submitButton) submitButton.textContent = "Request My Call";
+    } finally {
+      if (submitButton) submitButton.disabled = false;
+    }
+  });
+}
+
 closeVideoModal?.addEventListener("click", closeModal);
 modal?.addEventListener("click", (event) => {
   const target = event.target;
@@ -174,3 +232,4 @@ initRevealAnimation();
 initScrollButtons();
 initScrollProgress();
 initMagneticButtons();
+initBookingForm();

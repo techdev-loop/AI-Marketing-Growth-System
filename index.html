@@ -8,8 +8,6 @@
       name="description"
       content="Scale your revenue by 300% with AI-powered ad strategy, high-converting creatives, and elite execution."
     />
-    <link rel="preconnect" href="https://assets.calendly.com" />
-    <link rel="stylesheet" href="https://assets.calendly.com/assets/external/widget.css" />
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
@@ -46,11 +44,11 @@
 
           <div class="hero-video">
             <div class="hero-video__frame" aria-label="Introduction video player">
-              <div
-                id="vidalytics_embed_dIKsAOKOfqVMrD08"
-                class="vid_embed--classic vid_embed--landscape vid_embed--large"
-                style="width: 100%; position: relative; padding-top: 56.25%"
-              ></div>
+              <img
+                src="./docx_extract/media/image3.png"
+                alt="Workshop video preview"
+                loading="lazy"
+              />
             </div>
           </div>
           <p class="hero__microcopy">
@@ -158,11 +156,58 @@
           <p class="section-copy">
             In 30 minutes, we'll show where your fastest wins are and the exact plan to unlock them.
           </p>
-          <div
-            class="calendly-inline-widget"
-            data-url="https://calendly.com/your-calendly-link/30min"
-            style="min-width: 320px; height: 700px"
-          ></div>
+          <form
+            class="booking-form"
+            id="bookingForm"
+            action="https://formsubmit.co/ajax/your@email.com"
+            method="post"
+          >
+            <input type="hidden" name="_subject" value="New booking request - Axon Elite" />
+            <input type="hidden" name="_captcha" value="false" />
+            <input type="text" name="_honey" class="booking-honey" tabindex="-1" autocomplete="off" />
+            <label class="booking-field">
+              <span>Full Name</span>
+              <input type="text" name="name" autocomplete="name" placeholder="Your full name" required />
+            </label>
+            <label class="booking-field">
+              <span>Email</span>
+              <input
+                type="email"
+                name="email"
+                autocomplete="email"
+                placeholder="you@company.com"
+                required
+              />
+            </label>
+            <label class="booking-field">
+              <span>Phone Number</span>
+              <input
+                type="tel"
+                name="phone"
+                autocomplete="tel"
+                placeholder="+1 (555) 123-4567"
+                required
+              />
+            </label>
+            <label class="booking-field">
+              <span>Preferred Date</span>
+              <input type="date" name="preferred_date" required />
+            </label>
+            <label class="booking-field">
+              <span>Preferred Time</span>
+              <input type="time" name="preferred_time" required />
+            </label>
+            <label class="booking-field booking-field--wide">
+              <span>What are you trying to scale right now?</span>
+              <textarea
+                name="message"
+                rows="4"
+                placeholder="Tell us your main growth bottleneck..."
+              ></textarea>
+            </label>
+            <button class="btn btn--primary booking-form__submit" type="submit">Request My Call</button>
+            <p class="booking-form__status" id="bookingStatus" aria-live="polite"></p>
+          </form>
         </div>
       </section>
 
@@ -170,43 +215,51 @@
         <div class="container reveal">
           <h2>Frequently Asked Questions</h2>
           <div class="faq-list">
-            <details open>
+            <details class="faq-item" open>
               <summary>What exactly is the "Elite Scaling Framework"?</summary>
-              <p>It is our proprietary 3-step system:</p>
-              <ul>
-                <li><strong>Intelligence:</strong> Analyze your niche's top-performing data.</li>
-                <li><strong>Creation:</strong> Generate high-converting AI assets.</li>
-                <li>
-                  <strong>Execution:</strong> Deploy a go-to-market plan optimized for low CPA and
-                  scalable growth.
-                </li>
-              </ul>
+              <div class="faq-answer">
+                <p>It is our proprietary 3-step system:</p>
+                <ul>
+                  <li><strong>Intelligence:</strong> Analyze your niche's top-performing data.</li>
+                  <li><strong>Creation:</strong> Generate high-converting AI assets.</li>
+                  <li>
+                    <strong>Execution:</strong> Deploy a go-to-market plan optimized for low CPA and
+                    scalable growth.
+                  </li>
+                </ul>
+              </div>
             </details>
-            <details>
+            <details class="faq-item">
               <summary>Doesn't AI marketing look fake and robotic?</summary>
-              <p>
-                Most does, and that is why most AI ads fail. Our system uses high-fidelity creative
-                standards trained on real performance signals and human aesthetics so your brand remains
-                premium.
-              </p>
+              <div class="faq-answer">
+                <p>
+                  Most does, and that is why most AI ads fail. Our system uses high-fidelity creative
+                  standards trained on real performance signals and human aesthetics so your brand remains
+                  premium.
+                </p>
+              </div>
             </details>
-            <details>
+            <details class="faq-item">
               <summary>What exactly do you handle for us?</summary>
-              <ul>
-                <li><strong>Social Media Management:</strong> Organic presence and brand voice.</li>
-                <li><strong>Ad Creative &amp; Strategy:</strong> Build, test, and optimize ad systems.</li>
-                <li>
-                  <strong>Market Dominance:</strong> Operate as your outsourced CMO office for your
-                  digital footprint.
-                </li>
-              </ul>
+              <div class="faq-answer">
+                <ul>
+                  <li><strong>Social Media Management:</strong> Organic presence and brand voice.</li>
+                  <li><strong>Ad Creative &amp; Strategy:</strong> Build, test, and optimize ad systems.</li>
+                  <li>
+                    <strong>Market Dominance:</strong> Operate as your outsourced CMO office for your
+                    digital footprint.
+                  </li>
+                </ul>
+              </div>
             </details>
-            <details>
+            <details class="faq-item">
               <summary>Why choose this over a traditional agency?</summary>
-              <p>
-                Traditional agencies are slower, more expensive, and depend heavily on guessing. We move
-                with data, speed, and repeatable systems to scale what is already proven to convert.
-              </p>
+              <div class="faq-answer">
+                <p>
+                  Traditional agencies are slower, more expensive, and depend heavily on guessing. We move
+                  with data, speed, and repeatable systems to scale what is already proven to convert.
+                </p>
+              </div>
             </details>
           </div>
         </div>
@@ -234,31 +287,6 @@
       </div>
     </dialog>
 
-    <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
-    <script>
-      (function (v, i, d, a, l, y, t, c, s) {
-        y = "_vly";
-        t = "createElement";
-        c = "onload";
-        v[y] = v[y] || function () {
-          (v[y].q = v[y].q || []).push(arguments);
-        };
-        v[y].l = 1 * new Date();
-        s = i[t]("script");
-        s.async = 1;
-        s.src = d;
-        s[c] = function () {
-          v[y](a, l);
-        };
-        i.head.appendChild(s);
-      })(
-        window,
-        document,
-        "https://fast.vidalytics.com/embeds/8Okpkhqb/dIKsAOKOfqVMrD08/loader.min.js",
-        "load",
-        "vidalytics_embed_dIKsAOKOfqVMrD08"
-      );
-    </script>
     <script src="./script.js"></script>
   </body>
 </html>
